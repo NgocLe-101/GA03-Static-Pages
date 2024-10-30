@@ -343,6 +343,11 @@
   color: var(--primary) !important;
 }
 
+.product-size {
+  height: 400px; /* Set the desired height */
+  object-fit: cover; /* This will ensure the image covers the area without distortion */
+}
+
 /*** Testimonial ***/
 .testimonial-carousel .owl-item .testimonial-item img {
   width: 60px;
