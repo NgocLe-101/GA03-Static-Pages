@@ -22,7 +22,8 @@ const config = {
       password: process.env.DB_PASS,
       port: process.env.DB_PORT,
       ssl: {
-        rejectUnauthorized: false,
+        rejectUnauthorized: true,
+        ca: sslCert,
       },
     },
     migrations: {

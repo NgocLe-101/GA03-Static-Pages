@@ -1,10 +1,8 @@
-<%- include('head', { active: 'movies' }) -%> 
+<%- include('head', { active: 'movies' }) -%>
 <%- include('page_header', { title: 'Movies' }) -%>
-
 <!-- Product Start -->
 <div class="container-xxl py-5">
     <div class="container">
-
         <div class="row g-0 gx-3 mb-4">
             <!-- Genres Filter -->
             <div class="col-md-2">
@@ -21,6 +19,8 @@
                     <option value="Romance" <% if (filters.genre === 'Romance') { %>selected<% } %>>Romance</option>
                 </select>
             </div>
+
+            <!-- Other filters (Language, Age, Rate, Price, etc.) follow the same pattern as Genre -->
             <!-- Language Filter -->
             <div class="col-md-2">
                 <label for="language" class="form-label text-white">Language</label>
@@ -64,14 +64,15 @@
                             placeholder="Max Price"
                             min="0"
                     >
-                    
+
                 </div>
             </div>
             <!-- Filter Button -->
             <div class="col-md-2" style="padding-top: 1.75rem;">
-                <button class="btn btn-secondary w-100 h-100" id="price-filter-btn">Filter</button>
+                <button class="btn btn-secondary w-100 h-100" id="filter-btn">Filter</button>
             </div>
         </div>
+
         <!-- Search Box -->
         <div class="row g-0 gx-3 margin-bottom">
             <div class="col-md-10">
@@ -87,9 +88,10 @@
             </div>
         </div>
 
+        <!-- Movie Results -->
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
-                <div class="row my-4 g-4 movies-container">
+                <div class="row my-4 g-4 movies-container" id="movies-container">
                     <% if (movies.length === 0) { %>
                         <div class="col-12 text-center">
                             <i class="fas fa-sad-tear fa-4x mb-4 text-primary"></i>
@@ -97,40 +99,22 @@
                         </div>
                     <% } else { %>
                         <% movies.forEach((movie, index) => { %>
-                            <div
-                                    class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                                    data-wow-delay="<%= 0.1 + (index * 0.2) %>s"
-                            >
+                            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<%= 0.1 + (index * 0.2) %>s">
                                 <div class="product-item">
                                     <div class="position-relative bg-light overflow-hidden">
-                                        <img
-                                                class="img-fluid w-100 fixed-size"
-                                                src="<%= movie.image_url %>"
-                                                alt=""
-                                        />
-                                        <div
-                                                class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                                        >
-                                            New
-                                        </div>
+                                        <img class="img-fluid w-100 fixed-size" src="<%= movie.image_url %>" alt=""/>
+                                        <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
                                     </div>
                                     <div class="text-center p-4">
-                                        <a class="h5 mb-2 text-clamp-1" href="/movies/<%= movie.id %>"
-                                        ><%= movie.title %></a
-                                        >
+                                        <a class="h5 mb-2 text-clamp-1" href="/movies/<%= movie.id %>"><%= movie.title %></a>
                                         <p class="text-clamp"><%= movie.description %></p>
                                     </div>
                                     <div class="d-flex border-top">
                                         <small class="w-50 text-center border-end py-2">
-                                            <a class="text-body" href="/movies/<%= movie.id %>"
-                                            ><i class="fa fa-eye text-primary me-2"></i>View detail</a
-                                            >
+                                            <a class="text-body" href="/movies/<%= movie.id %>"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
                                         </small>
                                         <small class="w-50 text-center py-2">
-                                            <a class="text-body" href="/cart/add/<%= movie.id %>"
-                                            ><i class="fa fa-shopping-bag text-primary me-2"></i>Add to
-                                                cart</a
-                                            >
+                                            <a class="text-body" href="/cart/add/<%= movie.id %>"><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
                                         </small>
                                     </div>
                                 </div>
@@ -143,5 +127,5 @@
     </div>
 </div>
 <!-- Product End -->
-<script src="/js/filter.js"></script>
+
 <%- include('foot') -%>

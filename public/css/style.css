@@ -504,7 +504,6 @@
   width: 100%;
   position: absolute;
 }
-
 .center-page {
   display: flex;
   justify-content: center;
@@ -512,3 +511,4 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #1e2024 0%, #17181c 100%);
 }
+

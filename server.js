@@ -50,6 +50,9 @@ app.use(
             secure: process.env.NODE_ENV === "production", // Ensure cookies are only used over HTTPS
             httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
         },
+        ssl: {
+            rejectUnauthorized: false,
+        },
     })
 );
 
@@ -77,5 +80,5 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use((req, res) => {
     res.render("404");
 });
-
-export default app;
+app.listen('3000')
+// export default app;
